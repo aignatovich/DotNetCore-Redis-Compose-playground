@@ -12556,7 +12556,7 @@
     ".NETCoreApp,Version=v2.2": [
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.Extensions.Caching.Redis >= 2.2.0",
-      "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "Microsoft.Extensions.DependencyInjection.Abstractions >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
@@ -12567,11 +12567,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ai/MyApp/DataLayer/DataLayer.csproj",
+      "projectUniqueName": "/home/ai/MyApplication/MyApp/DataLayer/DataLayer.csproj",
       "projectName": "DataLayer",
-      "projectPath": "/home/ai/MyApp/DataLayer/DataLayer.csproj",
+      "projectPath": "/home/ai/MyApplication/MyApp/DataLayer/DataLayer.csproj",
       "packagesPath": "/home/ai/.nuget/packages/",
-      "outputPath": "/home/ai/MyApp/DataLayer/obj/",
+      "outputPath": "/home/ai/MyApplication/MyApp/DataLayer/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -12609,7 +12609,7 @@
           },
           "Microsoft.Extensions.DependencyInjection.Abstractions": {
             "target": "Package",
-            "version": "(, )"
+            "version": "[2.2.0, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",

@@ -4631,7 +4631,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
-          "DataLayer": "1.0.0"
+          "DataLayer": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0"
         },
         "compile": {
           "bin/placeholder/BusinessLayer.dll": {}
@@ -4645,7 +4646,8 @@
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.2.0",
-          "Microsoft.Extensions.Caching.Redis": "2.2.0"
+          "Microsoft.Extensions.Caching.Redis": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0"
         },
         "compile": {
           "bin/placeholder/DataLayer.dll": {}
@@ -12605,11 +12607,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ai/MyApp/MyApi/MyApi.csproj",
+      "projectUniqueName": "/home/ai/MyApplication/MyApp/MyApi/MyApi.csproj",
       "projectName": "MyApi",
-      "projectPath": "/home/ai/MyApp/MyApi/MyApi.csproj",
+      "projectPath": "/home/ai/MyApplication/MyApp/MyApi/MyApi.csproj",
       "packagesPath": "/home/ai/.nuget/packages/",
-      "outputPath": "/home/ai/MyApp/MyApi/obj/",
+      "outputPath": "/home/ai/MyApplication/MyApp/MyApi/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -12626,8 +12628,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "/home/ai/MyApp/BusinessLayer/BusinessLayer.csproj": {
-              "projectPath": "/home/ai/MyApp/BusinessLayer/BusinessLayer.csproj"
+            "/home/ai/MyApplication/MyApp/BusinessLayer/BusinessLayer.csproj": {
+              "projectPath": "/home/ai/MyApplication/MyApp/BusinessLayer/BusinessLayer.csproj"
             }
           }
         }
