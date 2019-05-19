@@ -8,7 +8,7 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace MyApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -18,38 +18,13 @@ namespace MyApi.Controllers
         {
             this.cache = cache;
         }
-        
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET api/values/5
         [HttpGet("{key}")]
-        public ActionResult<string> Get(string key)
-        {
-            return cache.GetString(key);
-        }
+        public async Task<ActionResult<string>> Get(string key) 
+            => await cache.GetStringAsync(key);
 
-        // POST api/values
         [HttpPost("{key}/{value}")]
-        public void Post([FromQuery] string key, [FromQuery] string value)
-        {
-            cache.Set("qwe", Encoding.UTF8.GetBytes("qwe"));
-        }
-
-        // PUT api/values/5
-        [HttpPut("{key}/{value}")]
-        public void Put(string key, string value)
-        {
-            cache.Set(key, Encoding.UTF8.GetBytes(value));
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        public async Task Post(string key, string value) 
+            => await cache.SetStringAsync(key, value);
     }
 }
