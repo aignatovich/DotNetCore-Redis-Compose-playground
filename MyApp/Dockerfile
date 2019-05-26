@@ -1,20 +1,26 @@
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+USER 0
+WORKDIR /app
+
 FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /src
+COPY ["MyApi/MyApi.csproj", "MyApi/"]
+RUN dotnet restore "MyApi/MyApi.csproj"
+COPY . .
+WORKDIR "MyApi"
+RUN dotnet build "MyApi.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "MyApi.csproj" -c Release -o /app
+
+FROM base AS final
 WORKDIR /app
-COPY ./*.sln ./
+COPY --from=publish /app .
 
-COPY ./DataLayer/DataLayer.csproj ./DataLayer/DataLayer.csproj
-COPY ./BusinessLayer/BusinessLayer.csproj ./BusinessLayer/BusinessLayer.csproj
-COPY ./MyApi/MyApi.csproj ./MyApi/MyApi.csproj
+RUN chown -R 1001:0 /app && chmod -R og+rwx /app
+ENV ASPNETCORE_URLS="http://*:8080"
+EXPOSE 8080
 
-COPY . . 
+USER 1001
 
-RUN dotnet restore
-RUN dotnet build -c Release --no-restore
-
-RUN dotnet publish "./MyApi/MyApi.csproj" -c Release -o out
-
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime
-WORKDIR /app
-ENV ASPNETCORE_ENVIRONMENT Local
-COPY --from=build /app/MyApi/out .
 ENTRYPOINT ["dotnet", "MyApi.dll"]

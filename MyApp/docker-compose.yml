@@ -1,24 +1,33 @@
 version: '3'
 services:
   web:
-    build: .
+    build: 
+      context: .
     ports:
-        - "8000:80"
+      - "8080:8080"
+    networks:
+      - global
+    expose: 
+      - "8080"
     depends_on:
       - redis
-
+    environment: 
+      - REDIS_HOST=redis
+      - REDIS_MASTER=master
   redis:
-    image: redis:4.0.5-alpine
+    image: redis:5.0.5-alpine
     command: ["redis-server", "--appendonly", "yes"]
-    hostname: redis
-    name: master
     networks:
-      - redis-net
+      - global
+    hostname: redis
+    ports:
+      - "2239:6379"
+    expose:
+      - "2239"
     volumes:
       - redis-data:/data
-
-networks:
-  redis-net:
-
 volumes:
   redis-data:
+
+networks:
+  global: 

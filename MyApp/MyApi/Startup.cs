@@ -22,20 +22,16 @@ namespace MyApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDistributedRedisCache(options =>
             {
-                options.Configuration = "localhost";
-                options.InstanceName = "master";
+                options.Configuration = Environment.GetEnvironmentVariable("REDIS_HOST");
+                options.InstanceName = Environment.GetEnvironmentVariable("REDIS_MASTER");
             });
-
-            BusinessLayerServiceCollections.RegisterDependencies(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDeveloperExceptionPage();
